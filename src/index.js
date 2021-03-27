@@ -7,14 +7,9 @@ import UserInterface from './App.js';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import reducer from './reducer.js'
-import Modal from 'react-modal';
+import reducer from './reducer.js';
 
 const store = createStore(reducer, applyMiddleware(thunk));
-
-Modal.setAppElement('#user-interface')
-
-const appElement = document.getElementById('user-interface');
 
 ReactDOM.render(
   <Provider store={store}>
@@ -22,5 +17,3 @@ ReactDOM.render(
   </Provider>,
   appElement
 );
-
-

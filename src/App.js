@@ -4,5 +4,10 @@ import './App.css';
 import { useSelector, useDispatch } from 'react-redux';
 import ReactDOM from 'react-dom';
 
+const UserInterface = () => (
+    <div>
+        <Cart />
+    </div>
+)
 
 export default UserInterface;
