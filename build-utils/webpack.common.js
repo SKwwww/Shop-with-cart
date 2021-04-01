@@ -39,6 +39,6 @@ module.exports = {
   devServer: {
     contentBase: path.resolve(__dirname, '..', './dist'),
     port: 5000,
-    proxy: {'/tt': 'http://localhost/my/ZSTT'}
+    proxy: {'/tt': 'http://localhost/my/TT MakeBeCool'}
   },
 };

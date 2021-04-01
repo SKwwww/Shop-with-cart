@@ -8,12 +8,14 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import reducer from './reducer.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const store = createStore(reducer, applyMiddleware(thunk));
+
 
 ReactDOM.render(
   <Provider store={store}>
     <UserInterface />
   </Provider>,
-  appElement
+  document.getElementById('user-interface')
 );
