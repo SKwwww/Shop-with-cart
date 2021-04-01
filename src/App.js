@@ -44,6 +44,7 @@ const Cart = () => {
                             <th scope="col">Model</th>
                             <th scope="col">Color</th>
                             <th scope="col">Price</th>
+                            <th scope="col">Discount</th>
                             <th scope="col">Quantity</th>
                         </tr>
                     </thead>
@@ -100,6 +101,15 @@ const Cart = () => {
 const AddedCar = (props) => {
   var cars = useSelector((state)=>(state.cars));
   const dispatch = useDispatch();
+  var discount;
+  var cars_unit_price;
+  if (props.cart_item.discount) {
+    discount = '5%';
+    cars_unit_price = cars[props.cart_item.id].price*0.95;
+  } else {
+    discount = '';
+    cars_unit_price = cars[props.cart_item.id].price;
+  }
   var removeOneCar = (id) => {
     dispatch(decreaseCarQuantity(id));
   }
@@ -115,7 +125,8 @@ const AddedCar = (props) => {
       <td>{cars[props.cart_item.id].manufacturer}</td>
       <td>{cars[props.cart_item.id].model}</td>
       <td>{cars[props.cart_item.id].color}</td>
-      <td>{cars[props.cart_item.id].price}</td>
+      <td>{cars_unit_price}</td>
+      <td>{discount}</td>
       <td><span onClick={()=>{removeOneCar(props.cart_item.id)}}>-</span> <span>{props.cart_item.quantity}</span> <span onClick={()=>{addElseCar(props.cart_item.id)}}>+</span> <span onClick={()=>{removeCar(props.cart_item.id)}}>x</span></td>
     </tr>
   );
@@ -149,11 +160,11 @@ const Car = (props) => {
   var buy_button_disabled;
   for (var i=0;i<cart.length;i++) {
     if (cart[i].id == props.id) {
-      var buy_button_disabled = true;
+      buy_button_disabled = true;
     }
   }
   if (!buy_button_disabled) {
-    var buy_button_disabled = false;
+    buy_button_disabled = false;
   }
   return (
     <div className="col-md-4 d-flex flex-column">
